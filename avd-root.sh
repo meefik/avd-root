@@ -2,10 +2,11 @@
 ARCH=$1
 if [ "$#" -ne 1 ]
 then
-    echo "Usage: $0 <arch>"
+    echo "Usage: $0 <arm|x86>"
     exit 1
 fi
-adb push ./bb/$ARCH/nopie/bin/busybox /data/local/busybox
+adb root
+adb push ./bb/$ARCH/busybox /data/local/busybox
 adb shell "chmod 755 /data/local/busybox"
 adb shell "/data/local/busybox mount -o rw,remount /system"
 adb shell "/data/local/busybox --install -s /system/xbin"
