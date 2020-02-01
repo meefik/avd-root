@@ -39,7 +39,8 @@ then
   mv /tmp/su/$ARCH/su.pie /tmp/su/$ARCH/su
 fi
 adb push /tmp/su/$ARCH/* $BIN_DIR
-adb shell "$BIN_DIR/su --daemon&"
 adb install "$SU_APK"
+adb shell "setenforce 0"
+adb shell "$BIN_DIR/su --daemon"
 
 exit 0
